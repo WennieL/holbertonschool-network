@@ -5,16 +5,7 @@
 
 # localhost resolves to 127.0.0.2
 # facebook.com resolves to 8.8.8.8.
-# Backup the original /etc/hosts file
-# Check if the script is run as root
-# Check if the script is run as root
-if [[ $EUID -ne 0 ]]; then
-   echo "This script must be run as root. Please use sudo." 
-   exit 1
-fi
 
-# Backup the original /etc/hosts file
-cp /etc/hosts /etc/hosts.bak
 
 # Update localhost to resolve to 127.0.0.2
 sed -i '/127.0.0.1\s*localhost/c\127.0.0.2 localhost' /etc/hosts
