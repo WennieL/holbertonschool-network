@@ -2,11 +2,4 @@
 # a Bash script that displays all active IPv4 IPs on the machine it’s executed on.
 # Display active IPv4 addresses
 
-# Check if the 'hostname' command is available
-if command -v hostname &> /dev/null; then
-    # Use hostname -I to get the IP addresses and format with a $ at the end of each line
-    hostname -I | tr ' ' '\n' | sed 's/$/$/'
-else
-    # Fallback to ifconfig command
-    ifconfig | grep -oP '(?<=inet\s)\d+(\.\d+){3}' | sed 's/$/$/'
-fi
+ifconfig | grep 'inet ' | awk '{print $2}'
